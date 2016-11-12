@@ -48,7 +48,8 @@ $(document).on('ready', function() {
     var startDateCell = $('<td>').text(childSnapshot.val().startDate);
     var monthlyRateCell = $('<td>').text(childSnapshot.val().monthlyRate);
 
-    tableRow.append(nameCell).append(roleCell).append(startDateCell).append('<td>').append(monthlyRateCell);
+    tableRow.append(nameCell).append(roleCell).append(startDateCell)
+            .append('<td>').append(monthlyRateCell);
     $('tbody').append(tableRow);
   });
 });
