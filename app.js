@@ -25,15 +25,32 @@ $(document).on('ready', function() {
 		startDate = $('#inputDate').val().trim();
 		monthlyRate = $('#inputMonth').val().trim();
 
-	    database.ref().push({
-	        name: name,
-	        role: role,
-	        startDate: startDate,
-	        monthlyRate: monthlyRate,
-	        dateAdded: firebase.database.ServerValue.TIMESTAMP 
-	    });
-	    return false;
+    database.ref().push({
+        name: name,
+        role: role,
+        startDate: startDate,
+        monthlyRate: monthlyRate,
+        dateAdded: firebase.database.ServerValue.TIMESTAMP
+    });
+
+    $('#inputName').val('');
+    $('#inputRole').val('');
+    $('#inputDate').val('');
+    $('#inputMonth').val('');
+
+    return false;
 	});
+
+  database.ref().on("child_added", function(childSnapshot) {
+    var tableRow = $('<tr>');
+    var nameCell = $('<td>').text(childSnapshot.val().name);
+    var roleCell = $('<td>').text(childSnapshot.val().role);
+    var startDateCell = $('<td>').text(childSnapshot.val().startDate);
+    var monthlyRateCell = $('<td>').text(childSnapshot.val().monthlyRate);
+
+    tableRow.append(nameCell).append(roleCell).append(startDateCell).append('<td>').append(monthlyRateCell);
+    $('tbody').append(tableRow);
+  });
 });
 // clear data from form fields
 // update DOM with user data
