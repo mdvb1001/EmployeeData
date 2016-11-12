@@ -19,7 +19,6 @@ var monthlyRate = 0;
 // push data to firebase
 $(document).on('ready', function() {
 	$('#submit').on('click', function () {
-		console.log('HELLO');
 		name = $('#inputName').val().trim();
 		role = $('#inputRole').val().trim();
 		startDate = $('#inputDate').val().trim();
@@ -58,6 +57,13 @@ $(document).on('ready', function() {
             .append(monthsWorkedCell).append(monthlyRateCell)
             .append(totalBilledCell);
     $('tbody').append(tableRow);
+  });
+
+  database.ref().orderByChild("startDate").limitToLast(1).on("child_added", function(snapshot) {
+    $('#mostRecentName').text('Name: ' + snapshot.val().name);
+    $('#mostRecentRole').text('Role: ' + snapshot.val().role);
+    $('#mostRecentStartDate').text('Start date: ' + moment(snapshot.val().startDate).format("MMMM Do YYYY"));
+    $('#mostRecentMonthlyRate').text('Montly rate: ' + snapshot.val().monthlyRate);
   });
 });
 // clear data from form fields
