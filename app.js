@@ -8,3 +8,26 @@ var config = {
   messagingSenderId: "406481332206"
 };
 firebase.initializeApp(config);
+
+// get reference to database
+var database = firebase.database();
+
+// initialize variables
+var name = "";
+var role = "";
+var startDate = "";
+var monthlyRate = 0;
+
+// read data from firebase if it exists
+
+
+// get values from inputs
+
+
+// push data to firebase
+
+
+// clear data from form fields
+
+
+// update DOM with user data
