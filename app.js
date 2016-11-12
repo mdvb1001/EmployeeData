@@ -17,19 +17,24 @@ var monthlyRate = 0;
 // read data from firebase if it exists
 // get values from inputs
 // push data to firebase
-$('#submit').on('click', function () {
-	name = $('#inputName').val().trim();
-	role = $('#inputRole').val().trim();
-	startDate = $('#inputDate').val().trim();
-	monthlyRate = $('#inputMonth').val().trim();
+$(document).on('ready', function() {
+	console.log("YO");
+	$('#submit').on('click', function () {
+		console.log('HELLO');
+		name = $('#inputName').val().trim();
+		role = $('#inputRole').val().trim();
+		startDate = $('#inputDate').val().trim();
+		monthlyRate = $('#inputMonth').val().trim();
 
-    database.ref().push({
-        name: name,
-        role: role,
-        startDate: startDate,
-        monthlyRate: monthlyRate,
-        dateAdded: firebase.database.ServerValue.TIMESTAMP 
-    });
+	    database.ref().push({
+	        name: name,
+	        role: role,
+	        startDate: startDate,
+	        monthlyRate: monthlyRate,
+	        dateAdded: firebase.database.ServerValue.TIMESTAMP 
+	    });
+	    return false;
+	});
 });
 // clear data from form fields
 // update DOM with user data
