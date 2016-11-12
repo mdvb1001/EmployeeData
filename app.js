@@ -18,7 +18,6 @@ var monthlyRate = 0;
 // get values from inputs
 // push data to firebase
 $(document).on('ready', function() {
-	console.log("YO");
 	$('#submit').on('click', function () {
 		console.log('HELLO');
 		name = $('#inputName').val().trim();
