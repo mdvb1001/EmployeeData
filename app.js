@@ -65,6 +65,13 @@ $(document).on('ready', function() {
     $('#mostRecentStartDate').text('Start date: ' + moment(snapshot.val().startDate).format("MMMM Do YYYY"));
     $('#mostRecentMonthlyRate').text('Montly rate: ' + snapshot.val().monthlyRate);
   });
+
+  database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
+    $('#mostRecentInputName').text('Name: ' + snapshot.val().name);
+    $('#mostRecentInputRole').text('Role: ' + snapshot.val().role);
+    $('#mostRecentInputStartDate').text('Start date: ' + moment(snapshot.val().startDate).format("MMMM Do YYYY"));
+    $('#mostRecentInputMonthlyRate').text('Montly rate: ' + snapshot.val().monthlyRate);
+  });
 });
 // clear data from form fields
 // update DOM with user data
