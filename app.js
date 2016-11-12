@@ -42,14 +42,21 @@ $(document).on('ready', function() {
 	});
 
   database.ref().on("child_added", function(childSnapshot) {
+    var monthsWorked = moment().diff(moment(childSnapshot.val().startDate), "months");
+    var monthlyRate = childSnapshot.val().monthlyRate;
+    var totalBilled = monthsWorked * monthlyRate;
+
     var tableRow = $('<tr>');
     var nameCell = $('<td>').text(childSnapshot.val().name);
     var roleCell = $('<td>').text(childSnapshot.val().role);
     var startDateCell = $('<td>').text(childSnapshot.val().startDate);
-    var monthlyRateCell = $('<td>').text(childSnapshot.val().monthlyRate);
+    var monthsWorkedCell = $('<td>').text(monthsWorked + ' months');
+    var monthlyRateCell = $('<td>').text('$' + monthlyRate);
+    var totalBilledCell = $('<td>').text('$' + totalBilled);
 
     tableRow.append(nameCell).append(roleCell).append(startDateCell)
-            .append('<td>').append(monthlyRateCell);
+            .append(monthsWorkedCell).append(monthlyRateCell)
+            .append(totalBilledCell);
     $('tbody').append(tableRow);
   });
 });
