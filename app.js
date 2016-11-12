@@ -27,7 +27,8 @@ $('#submit').on('click', function () {
         name: name,
         role: role,
         startDate: startDate,
-        monthlyRate: monthlyRate
+        monthlyRate: monthlyRate,
+        dateAdded: firebase.database.ServerValue.TIMESTAMP 
     });
 });
 // clear data from form fields
